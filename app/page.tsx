@@ -264,6 +264,7 @@ export default function Home() {
               <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map(service => {
                   const Icon = service.icon;
+                  const inputId = `expense-${service.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
                   return (
                     <Card key={service.name}>
                       <CardHeader>
@@ -273,8 +274,9 @@ export default function Home() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <Label>Monto</Label>
+                        <Label htmlFor={inputId}>Monto</Label>
                         <Input
+                          id={inputId}
                           type="number"
                           placeholder="Monto en $"
                           value={currentExpenses[service.name] || ''}
